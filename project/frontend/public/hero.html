@@ -3,44 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Информация о герое</title>
+    <title>Детали бойца</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/gallery">Галерея</a></li>
-                <li><a href="/help">Справка</a></li>
-                <li><a href="/register">Регистрация</а></li>
-                <li><a href="/login">Авторизация</а></li>
-                <li><a href="/profile">Личный кабинет</а></li>
+                <li><a href="/http://127.0.0.1:5500/frontend/public/index.html">Главная</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/gallery.html">Галерея</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/help.html">Справка</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/register.html">Регистрация</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/login.html">Авторизация</a></li>
+                <li style="display: none;"><a href="http://127.0.0.1:5500/frontend/public/profile.html">Личный кабинет</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <div class="container">
-            <h2 id="heroName">ФИО Героя</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="" alt="Фото героя" class="img-fluid" id="heroPhoto">
+            <div class="hero-details">
+                <h2 id="heroName"></h2>
+                <p id="heroYears"></p>
+                <div class="hero-photo">
+                    <img id="heroPhoto" src="" alt="Фото бойца">
                 </div>
-                <div class="col-md-8">
-                    <p><strong>Дата рождения:</strong> <span id="heroBirthDate"></span></p>
-                    <p><strong>Дата смерти:</strong> <span id="heroDeathDate"></span></p>
-                    <p><strong>Место рождения:</strong> <span id="heroPlaceOfBirth"></span></p>
-                    <p><strong>Военный конфликт:</strong> <span id="heroConflict"></span></p>
-                    <p><strong>Награды:</strong> <span id="heroAwards"></span></p>
-                </div>
-            </div>
-            <h3>Биография</h3>
-            <p id="heroBio">Биография героя...</p>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Heroes Memorial. Все права защищены.</p>
-    </footer>
-    <script src="js/scripts.js"></script>
-</body>
-</html>
+                <div class="hero-info">
+                    <p><strong>Дата рождения:</strong> <span id="birthDate"></span></p>
+                    <p><strong>Место рождения:</strong> <span id="placeOfBirth"></span></p>
+                    <p><strong>Год смерти:</strong> <span id="deathYear"></span></p>

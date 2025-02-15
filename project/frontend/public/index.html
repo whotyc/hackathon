@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heroes Memorial</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://api.nextgis.com/nextgisweb/api.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         #map {
             height: 500px;
@@ -17,11 +18,11 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/gallery">Галерея</a></li>
-                <li><a href="/help">Справка</a></li>
-                <li><a href="/register">Регистрация</a></li>
-                <li><a href="/login">Авторизация</a></li>
-                <li style="display: none;"><a href="/profile">Личный кабинет</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/gallery.html">Галерея</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/help.html">Справка</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/register.html">Регистрация</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/login.html">Авторизация</a></li>
+                <li style="display: none;"><a href="http://127.0.0.1:5500/frontend/public/profile.html">Личный кабинет</a></li>
             </ul>
             <form class="form-inline my-2 my-lg-0" id="searchForm">
                 <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" id="searchInput">
@@ -36,8 +37,8 @@
         </section>
         <section class="map">
             <h2>Интерактивная карта</h2>
-            <div id="map"><iframe src="https://geois2.orb.ru/resource/8890/display/tiny?base=basemap_0&lon=55.1872&lat=51.7918&angle=0&zoom=13&styles=8785%2C7986%2C7975%2C2092&linkMainMap=true&events=true&panel=none&controls=id&panels=identify%2Clayers" style="overflow:hidden;height:600px;width:800px" height="600" width="800"></iframe></iframe></div>
-        </section>https
+            <div id="map"><iframe src="https://geois2.orb.ru/resource/8890/display/tiny?base=basemap_0&lon=55.1872&lat=51.7918&angle=0&zoom=13&styles=8785%2C7986%2C7975%2C2092&linkMainMap=true&events=true&panel=none&controls=id&panels=identify%2Clayers" style="overflow:hidden;height:600px;width:800px" height="600" width="800"></iframe></div>
+        </section>
     </main>
     <footer>
         <p>&copy; 2025 Heroes Memorial. Все права защищены.</p>
@@ -45,9 +46,11 @@
     <script src="js/scripts.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize NextGIS Map
-            const map = new L.Map('map').setView([51.768199, 55.096955], 8); // Coordinates for Orenburg Region
-            const layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+            // Initialize Leaflet Map
+            const map = L.map('map').setView([51.768199, 55.096955], 8); // Coordinates for Orenburg Region
+            const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            });
             map.addLayer(layer);
 
             // Add NextGIS layer

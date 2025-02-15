@@ -10,73 +10,88 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/gallery">Галерея</a></li>
-                <li><a href="/help">Справка</a></li>
-                <li><a href="/register">Регистрация</a></li>
-                <li><a href="/login">Авторизация</a></li>
-                <li><a href="/profile">Личный кабинет</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/index.html">Главная</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/gallery.html">Галерея</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/help.html">Справка</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/register.html">Регистрация</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/login.html">Авторизация</a></li>
+                <li><a href="http://127.0.0.1:5500/frontend/public/profile.html">Личный кабинет</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <div class="container">
             <h2>Личный кабинет</h2>
-            <form id="userForm">
+            <form id="profileForm">
                 <div class="form-group">
                     <label for="name">ФИО</label>
                     <input type="text" id="name" name="name" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
+                    <label for="birthDate">Дата рождения</label>
+                    <input type="date" id="birthDate" name="birthDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="cityOfBirth">Город рождения</label>
+                    <input type="text" id="cityOfBirth" name="cityOfBirth" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+            <h3>Добавить бойца</h3>
+            <form id="heroForm">
+                <div class="form-group">
+                    <label for="lastName">Фамилия</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">Имя</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="middleName">Отчество</label>
+                    <input type="text" id="middleName" name="middleName" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="birthDate">Дата рождения</label>
-                    <input type="date" id="birthDate" name="birthDate" class="form-control">
+                    <input type="date" id="birthDate" name="birthDate" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="city">Город рождения</label>
-                    <input type="text" id="city" name="city" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Обновить данные</button>
-            </form>
-
-            <h2>Добавить бойца</h2>
-            <form id="heroForm">
-                <div class="form-group">
-                    <label for="heroName">ФИО</label>
-                    <input type="text" id="heroName" name="heroName" class="form-control" required>
+                    <label for="placeOfBirth">Место рождения</label>
+                    <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="heroBirthDate">Дата рождения</label>
-                    <input type="date" id="heroBirthDate" name="heroBirthDate" class="form-control" required>
+                    <label for="militaryCommissariat">Военный комиссариат</label>
+                    <input type="text" id="militaryCommissariat" name="militaryCommissariat" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="heroDeathDate">Дата смерти</label>
-                    <input type="date" id="heroDeathDate" name="heroDeathDate" class="form-control" required>
+                    <label for="militaryRank">Военное звание</label>
+                    <input type="text" id="militaryRank" name="militaryRank" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="heroPlaceOfBirth">Место рождения</label>
-                    <input type="text" id="heroPlaceOfBirth" name="heroPlaceOfBirth" class="form-control" required>
+                    <label for="conflicts">Конфликты</label>
+                    <input type="text" id="conflicts" name="conflicts" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="heroConflict">Военный конфликт</label>
-                    <input type="text" id="heroConflict" name="heroConflict" class="form-control" required>
+                    <label for="awards">Награды</label>
+                    <input type="text" id="awards" name="awards" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="heroAwards">Награды</label>
-                    <input type="text" id="heroAwards" name="heroAwards" class="form-control">
+                    <label for="deathDate">Дата гибели</label>
+                    <input type="date" id="deathDate" name="deathDate" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="heroPhoto">Фотография</label>
-                    <input type="text" id="heroPhoto" name="heroPhoto" class="form-control" required>
+                    <label for="placeOfBurial">Место захоронения</label>
+                    <input type="text" id="placeOfBurial" name="placeOfBurial" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="heroBio">Биография</label>
-                    <textarea id="heroBio" name="heroBio" class="form-control" required></textarea>
+                    <label for="biography">Биография</label>
+                    <textarea id="biography" name="biography" class="form-control"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Отправить данные</button>
+                <div class="form-group">
+                    <label for="additionalDocuments">Дополнительные документы</label>
+                    <input type="file" id="additionalDocuments" name="additionalDocuments" class="form-control" multiple>
+                </div>
+                <button type="submit" class="btn btn-primary">Добавить бойца</button>
             </form>
         </div>
     </main>
