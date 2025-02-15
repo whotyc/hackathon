@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - '5000:5000'
+    depends_on:
+      - db
+    environment:
+      MONGO_URI: mongodb://db:27017/heroes
+      SESSION_SECRET: your_session_secret
+
+  db:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - db-data:/data/db
+
+volumes:
+  db-data:

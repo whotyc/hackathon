@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heroes Memorial</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://api.nextgis.com/nextgisweb/api.js"></script>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/gallery">Галерея</a></li>
+                <li><a href="/help">Справка</a></li>
+                <li><a href="/register">Регистрация</a></li>
+                <li><a href="/login">Авторизация</a></li>
+                <li style="display: none;"><a href="/profile">Личный кабинет</a></li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" id="searchForm">
+                <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" id="searchInput">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+            </form>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Добро пожаловать на сайт памяти героев</h1>
+            <p>На этом сайте вы можете найти информацию о героях, погибших в различных конфликтах, и почтить их память.</p>
+        </section>
+        <section class="map">
+            <h2>Интерактивная карта</h2>
+            <div id="map"><iframe src="https://geois2.orb.ru/resource/8890/display/tiny?base=basemap_0&lon=55.5664&lat=51.9179&angle=0&zoom=10&styles=8785%2C7986%2C7975%2C2092&linkMainMap=true&events=true&panel=none&controls=id&panels=identify%2Clayers" style="overflow:hidden;height:600px;width:800px" height="600" width="800"></iframe></div>
+        </section>https
+    </main>
+    <footer>
+        <p>&copy; 2025 Heroes Memorial. Все права защищены.</p>
+    </footer>
+    <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize NextGIS Map
+            const map = new L.Map('map').setView([51.768199, 55.096955], 8); // Coordinates for Orenburg Region
+            const layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+            map.addLayer(layer);
+
+            // Add NextGIS layer
+            const nextgisLayer = L.tileLayer('https://geois2.orb.ru/api/component/render/tile?resource=8785&nd=204&z={z}&x={x}&y={y}');
+            map.addLayer(nextgisLayer);
+
+            // Handle search
+            document.querySelector('#searchForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const query = document.querySelector('#searchInput').value;
+                window.location.href = `/search.html?query=${query}`;
+            });
+
+            // Check if user is logged in and update navbar accordingly
+            const isLoggedIn = false; // TODO: Implement logic to check if user is logged in
+            if (isLoggedIn) {
+                document.querySelector('li:nth-child(4)').style.display = 'none';
+                document.querySelector('li:nth-child(5)').style.display = 'none';
+                document.querySelector('li:nth-child(6)').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
