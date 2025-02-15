@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет</title>
+    <title>Галерея</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -16,88 +16,37 @@
                 <li><a href="http://127.0.0.1:5500/frontend/public/register.html">Регистрация</a></li>
                 <li><a href="http://127.0.0.1:5500/frontend/public/login.html">Авторизация</a></li>
                 <li><a href="http://127.0.0.1:5500/frontend/public/profile.html">Личный кабинет</a></li>
-            </ul>
+            </ул>
+            <form class="form-inline my-2 my-lg-0" id="searchForm">
+                <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" id="searchInput">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+            </form>
         </nav>
     </header>
     <main>
         <div class="container">
-            <h2>Личный кабинет</h2>
-            <form id="profileForm">
-                <div class="form-group">
-                    <label for="name">ФИО</label>
-                    <input type="text" id="name" name="name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="birthDate">Дата рождения</label>
-                    <input type="date" id="birthDate" name="birthDate" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="cityOfBirth">Город рождения</label>
-                    <input type="text" id="cityOfBirth" name="cityOfBirth" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Сохранить</button>
-            </form>
-            <h3>Добавить бойца</h3>
-            <form id="heroForm">
-                <div class="form-group">
-                    <label for="lastName">Фамилия</label>
-                    <input type="text" id="lastName" name="lastName" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="firstName">Имя</label>
-                    <input type="text" id="firstName" name="firstName" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="middleName">Отчество</label>
-                    <input type="text" id="middleName" name="middleName" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="birthDate">Дата рождения</label>
-                    <input type="date" id="birthDate" name="birthDate" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="placeOfBirth">Место рождения</label>
-                    <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="militaryCommissariat">Военный комиссариат</label>
-                    <input type="text" id="militaryCommissariat" name="militaryCommissariat" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="militaryRank">Военное звание</label>
-                    <input type="text" id="militaryRank" name="militaryRank" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="conflicts">Конфликты</label>
-                    <input type="text" id="conflicts" name="conflicts" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="awards">Награды</label>
-                    <input type="text" id="awards" name="awards" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="deathDate">Дата гибели</label>
-                    <input type="date" id="deathDate" name="deathDate" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="placeOfBurial">Место захоронения</label>
-                    <input type="text" id="placeOfBurial" name="placeOfBurial" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="biography">Биография</label>
-                    <textarea id="biography" name="biography" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="additionalDocuments">Дополнительные документы</label>
-                    <input type="file" id="additionalDocuments" name="additionalDocuments" class="form-control" multiple>
-                </div>
-                <button type="submit" class="btn btn-primary">Добавить бойца</button>
-            </form>
+            <h2>Галерея</h2>
+            <div class="filter">
+                <label for="conflictFilter">Фильтр по конфликту:</label>
+                <select id="conflictFilter" name="conflictFilter">
+                    <option value="">Все</option>
+                    <option value="Великая Отечественная война">Великая Отечественная война</option>
+                    <option value="Афганистан">Боевые действия в Афганистане</option>
+                    <option value="Чечня">Вооруженный конфликт в Чеченской Республике и на прилегающих к ней территориях Российской Федерации</option>
+                    <option value="Сирия">Выполнение специальных задач на территории Сирийской Арабской Республики</option>
+                    <option value="Грузино-Абхазские события">Выполнение специальных задач на территории Таджикистана, Ингушетии, в Грузино-Абхазских событиях</option>
+                    <option value="Специальная военная операция">Специальная военная операция на Украине</option>
+                </select>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Фотографии бойцов будут загружены здесь -->
+            </div>
+            <div class="pagination" id="pagination">
+                <!-- Пагинация будет загружена здесь -->
+            </div>
         </div>
     </main>
     <footer>
         <p>&copy; 2025 Heroes Memorial. Все права защищены.</p>
     </footer>
-    <script src="js/scripts.js"></script>
-</body>
-</html>
+    <script src="js
