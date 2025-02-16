@@ -1,40 +1,111 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заявки о бойцах</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script defer src="admin-heroes.js"></script>
-</head>
-<body>
-    <header>
-        <h1>Заявки о бойцах</h1>
-        <nav>
-            <a href="admin-panel.html">Главная</a>
-            <a href="admin-users.html">Пользователи</a>
-            <a href="admin-heroes.html">Заявки о бойцах</a>
-            <a href="admin-map.html">Редактирование карты</a>
-            <a href="index.html">Выход</a>
-        </nav>
-    </header>
+<h2>Заявки на добавление бойцов</h2>
+<table id="fighters">
+    <tr>
+        <th>ID</th>
+        <th>ФИО</th>
+        <th>Дата рождения</th>
+        <th>Город</th>
+        <th>Военный комиссариат</th>
+        <th>Действие</th>
+    </tr>
+</table>
 
-    <main>
-        <h2>Список заявок</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>ФИО</th>
-                    <th>Описание</th>
-                    <th>Статус</th>
-                    <th>Действие</th>
-                </tr>
-            </thead>
-            <tbody id="heroesTable">
-                <!-- Данные загружаются из JS -->
-            </tbody>
-        </table>
-    </main>
-</body>
-</html>
+<!-- Панель редактирования (скрытая) -->
+<div id="editPanel" style="display: none;">
+    <h3>Редактирование информации</h3>
+    <input type="hidden" id="editId">
+    <input type="text" id="editName" placeholder="ФИО"><br>
+    <input type="text" id="editDate" placeholder="Дата рождения"><br>
+    <input type="text" id="editCity" placeholder="Город"><br>
+    <input type="text" id="editKomissariat" placeholder="Военный комиссариат"><br>
+    <button onclick="saveChanges()">Сохранить</button>
+    <button onclick="closeEdit()">Отмена</button>
+</div>
+
+<script>
+    // Примерный массив заявок
+    let fighters = [
+    { id: 1, name: "Иванов Иван Иванович", date: "1923", city: "Оренбург", komissariat: "Оренбургский" },
+    { id: 2, name: "Петров Петр Петрович", date: "1919", city: "Орск", komissariat: "Орский" },
+    { id: 3, name: "Сидоров Сидор Сидорович", date: "1921", city: "Бузулук", komissariat: "Бузулукский" },
+    { id: 4, name: "Кузнецов Алексей Викторович", date: "1920", city: "Новотроицк", komissariat: "Новотроицкий" },
+    { id: 5, name: "Смирнов Николай Иванович", date: "1918", city: "Гай", komissariat: "Гайский" },
+    { id: 6, name: "Федоров Василий Павлович", date: "1922", city: "Сорочинск", komissariat: "Сорочинский" },
+    { id: 7, name: "Алексеев Дмитрий Сергеевич", date: "1924", city: "Бугуруслан", komissariat: "Бугурусланский" },
+    { id: 8, name: "Морозов Владимир Егорович", date: "1923", city: "Медногорск", komissariat: "Медногорский" },
+    { id: 9, name: "Попов Артем Викторович", date: "1917", city: "Кувандык", komissariat: "Кувандыкский" },
+    { id: 10, name: "Зайцев Михаил Андреевич", date: "1916", city: "Абдулино", komissariat: "Абдулинский" }
+];
+
+
+    // Функция загрузки заявок
+    function loadFighters() {
+        let table = document.getElementById("fighters");
+        fighters.forEach(fighter => {
+            let row = table.insertRow();
+            row.setAttribute("data-id", fighter.id);
+            row.innerHTML = `
+                <td>${fighter.id}</td>
+                <td>${fighter.name}</td>
+                <td>${fighter.date}</td>
+                <td>${fighter.city}</td>
+                <td>${fighter.komissariat}</td>
+                <td>
+                    <button onclick="approveFighter(${fighter.id})">Принять</button>
+                    <button onclick="rejectFighter(${fighter.id})">Отклонить</button>
+                    <button onclick="editFighter(${fighter.id})">Внести правки</button>
+                </td>
+            `;
+        });
+    }
+
+    // Функция принятия заявки
+    function approveFighter(id) {
+        fighters = fighters.filter(fighter => fighter.id !== id);
+        document.querySelector(`tr[data-id="${id}"]`).remove();
+        alert("Информация принята");
+    }
+
+    // Функция отклонения заявки
+    function rejectFighter(id) {
+        fighters = fighters.filter(fighter => fighter.id !== id);
+        document.querySelector(`tr[data-id="${id}"]`).remove();
+        alert("Информация отклонена");
+    }
+
+    // Функция открытия панели редактирования
+    function editFighter(id) {
+        let fighter = fighters.find(f => f.id === id);
+        if (!fighter) return;
+
+        document.getElementById("editPanel").style.display = "block";
+        document.getElementById("editId").value = fighter.id;
+        document.getElementById("editName").value = fighter.name;
+        document.getElementById("editDate").value = fighter.date;
+        document.getElementById("editCity").value = fighter.city;
+        document.getElementById("editKomissariat").value = fighter.komissariat;
+    }
+
+    // Функция сохранения изменений
+    function saveChanges() {
+        let id = Number(document.getElementById("editId").value);
+        let fighter = fighters.find(f => f.id === id);
+        if (!fighter) return;
+
+        fighter.name = document.getElementById("editName").value;
+        fighter.date = document.getElementById("editDate").value;
+        fighter.city = document.getElementById("editCity").value;
+        fighter.komissariat = document.getElementById("editKomissariat").value;
+
+        document.getElementById("editPanel").style.display = "none";
+        alert("Изменения сохранены");
+        location.reload();  // Просто обновляем страницу, чтобы изменения отобразились
+    }
+
+    // Функция закрытия панели редактирования
+    function closeEdit() {
+        document.getElementById("editPanel").style.display = "none";
+    }
+
+    loadFighters();
+</script>
