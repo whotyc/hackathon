@@ -1,0 +1,92 @@
+/* Общие настройки */
+body {
+    font-family: 'Georgia', serif;
+    color: #333;
+}
+
+/* Баннер */
+.hero-section {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.hero-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Анимации кнопок */
+.btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Иконки */
+.display-4 {
+    font-size: 3rem;
+}
+
+/* Подвал */
+footer a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #d9dd6f;
+}
+/* Анимация для кнопки */
+.btn-primary, .btn-success {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-primary:hover, .btn-success:hover {
+    transform: scale(1.05);
+}
+
+/* Стилизация полей ввода */
+.form-control {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+}
+/* Анимация для ссылок */
+.list-group-item a {
+    transition: color 0.3s ease;
+}
+
+.list-group-item a:hover {
+    color: #0d6efd;
+}
+
+/* Стилизация заголовков */
+h3 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Отступы между секциями */
+section {
+    margin-bottom: 2rem;
+}

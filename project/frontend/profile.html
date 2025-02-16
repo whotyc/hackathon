@@ -4,114 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение собственного CSS -->
     <link rel="stylesheet" href="css/styles.css">
-    <script defer src="js/profile.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Личный кабинет</h1>
-        <nav>
-            <a href="index.html">Главная</a>
-            <a href="gallery.html">Галерея</a>
-            <a href="#" id="logout">Выйти</a>
-        </nav>
-    </header>
-    <div class="container">
-        <h2>Мои данные</h2>
-        <form id="profileForm">
-            <input type="text" id="name" placeholder="ФИО">
-            <input type="text" id="position" placeholder="Должность">
-            <input type="email" id="email" placeholder="Email">
-            <button type="submit">Сохранить</button>
-
-            <form id="heroForm">
-                <input type="text" id="heroName" placeholder="ФИО">
-                <input type="text" id="birthplace" placeholder="Место рождения">
-                <div class="form-search__item">
-                    <!--label class="for_ie_lte9" for="naimenovanie_nagradi">Награды</label-->
-                    <select class="select-mobile naimenovanie_nagradi with-unilabel-size"
-                            id="naimenovanie_nagradi">
-                        <option value="">Все награды</option>
-                                                            <option >Герой Советского Союза</option>
-                                                            <option >Орден Ленина</option>
-                                                            <option >Орден Красного Знамени</option>
-                                                            <option >Орден Красной Звезды</option>
-                                                            <option >Орден Отечественной Войны</option>
-                                                            <option >Орден Отечественной Войны I степени</option>
-                                                            <option >Орден Отечественной Войны II степени</option>
-                                                            <option >Орден Славы</option>
-                                                            <option >Орден Славы I степени</option>
-                                                            <option >Орден Славы II степени</option>
-                                                            <option >Орден Славы III степени</option>
-                                                            <option >Орден Александра Невского</option>
-                                                            <option >Орден Богдана Хмельницкого</option>
-                                                            <option >Орден Богдана Хмельницкого I степени</option>
-                                                            <option >Орден Богдана Хмельницкого II степени</option>
-                                                            <option >Орден Богдана Хмельницкого III степени</option>
-                                                            <option >Орден Кутузова</option>
-                                                            <option >Орден Кутузова I степени</option>
-                                                            <option >Орден Кутузова II степени</option>
-                                                            <option >Орден Кутузова III степени</option>
-                                                            <option >Орден Нахимова</option>
-                                                            <option >Орден Нахимова I степени</option>
-                                                            <option >Орден Нахимова II степени</option>
-                                                            <option >Орден Победы</option>
-                                                            <option >Орден Суворова</option>
-                                                            <option >Орден Суворова I степени</option>
-                                                            <option >Орден Суворова II степени</option>
-                                                            <option >Орден Суворова III степени</option>
-                                                            <option >Орден Ушакова</option>
-                                                            <option >Орден Ушакова I степени</option>
-                                                            <option >Орден Ушакова II степени</option>
-                                                            <option >Медаль «За отвагу»</option>
-                                                            <option >Медаль «За боевые заслуги»</option>
-                                                            <option >Медаль Ушакова</option>
-                                                            <option >Медаль Нахимова</option>
-                                                            <option >Медаль «За взятие Берлина»</option>
-                                                            <option >Медаль «За взятие Будапешта»</option>
-                                                            <option >Медаль «За взятие Вены»</option>
-                                                            <option >Медаль «За взятие Кенигсберга»</option>
-                                                            <option >Медаль «За оборону Кавказа»</option>
-                                                            <option >Медаль «За оборону Киева»</option>
-                                                            <option >Медаль «За оборону Ленинграда»</option>
-                                                            <option >Медаль «За оборону Москвы»</option>
-                                                            <option >Медаль «За оборону Одессы»</option>
-                                                            <option >Медаль «За оборону Севастополя»</option>
-                                                            <option >Медаль «За оборону Советского Заполярья»</option>
-                                                            <option >Медаль «За оборону Сталинграда»</option>
-                                                            <option >Медаль «За освобождение Белграда»</option>
-                                                            <option >Медаль «За освобождение Варшавы»</option>
-                                                            <option >Медаль «За освобождение Праги»</option>
-                                                            <option >Медаль «За победу над Германией</option>
-                                                            <option >Медаль «За победу над Японией»</option>
-                                                            <option >Медаль «Партизану Отечественной Войны»</option>
-                                                            <option >Медаль «Партизану Отечественной Войны» I степени</option>
-                                                            <option >Медаль «Партизану Отечественной Войны» II степени</option>
-                                                            <option >Герой Социалистического Труда (Орден Ленина и медаль «Серп и молот»)</option>
-                                                            <option >Медаль «За трудовое отличие»</option>
-                                                            <option >Медаль «За трудовую доблесть»</option>
-                                                            <option >Орден «Знак Почета»</option>
-                                                            <option >Орден Трудового Красного Знамени</option>
-                                                    </select>
+    <!-- Шапка -->
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">Книга Памяти Оренбургской области</h1>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-primary me-2"><i class="bi bi-box-arrow-in-right"></i> Вход</a>
+                    <a href="register.html" class="btn btn-success me-2"><i class="bi bi-person-plus"></i> Регистрация</a>
+                    <a href="profile.html" class="btn btn-secondary"><i class="bi bi-person-circle"></i> Личный кабинет</a>
                 </div>
-                <div class="form-search__item">
-                <button type="submit">Отправить</button>
-            </form>
-            
-            <script>
-            document.getElementById("heroForm").addEventListener("submit", function(event) {
-                event.preventDefault();
-                const data = { name: heroName.value, birthplace: birthplace.value };
-            
-                fetch("/heroes/add", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data)
-                }).then(res => res.json()).then(alert);
-            });
-            </script>
-            
-        </form>
-    </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Галерея</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="map.html">Карта</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Помощь</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="container py-5">
+        <h2 class="text-center mb-5">Личный кабинет</h2>
+
+        <!-- Информация о пользователе -->
+        <div class="card w-75 mx-auto">
+            <div class="card-body">
+                <h5 class="card-title">Информация о пользователе</h5>
+                <p class="card-text"><strong>Имя:</strong> Иван Иванов</p>
+                <p class="card-text"><strong>Email:</strong> ivan@example.com</p>
+                <p class="card-text"><strong>Роль:</strong> Пользователь</p>
+                <p class="card-text"><strong>Дата регистрации:</strong> 01.01.2025</p>
+                <a href="edit-profile.html" class="btn btn-primary">Редактировать профиль</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 Книга Памяти Оренбургской области. Все права защищены.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

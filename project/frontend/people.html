@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Карта</title>
+    <title>Люди и документы</title>
     <!-- Подключение Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Подключение собственного CSS -->
@@ -38,7 +38,10 @@
                         <a class="nav-link" href="gallery.html">Галерея</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="map.html">Карта</a>
+                        <a class="nav-link active" href="people.html">Люди и документы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="map.html">Карта</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="help.html">Помощь</a>
@@ -50,20 +53,17 @@
 
     <!-- Основной контент -->
     <main class="container py-5">
-        <h2 class="text-center mb-5">Интерактивная карта</h2>
+        <h2 class="text-center mb-5">Список бойцов</h2>
 
-        <!-- Форма поиска -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-6">
-                <input type="text" id="searchInput" class="form-control" placeholder="Введите место для поиска">
-            </div>
-            <div class="col-md-2">
-                <button id="searchButton" class="btn btn-primary w-100">Найти</button>
-            </div>
+        <!-- Кнопка добавить документы -->
+        <div class="text-end mb-4">
+            <a href="add-documents.html" class="btn btn-primary">Добавить документы</a>
         </div>
 
-        <!-- Контейнер для карты -->
-        <div id="map" style="height: 500px; border: 1px solid #ccc;"></div>
+        <!-- Список бойцов -->
+        <div id="soldiersList" class="row">
+            <!-- Список будет загружен через JavaScript -->
+        </div>
     </main>
 
     <!-- Подвал -->
@@ -84,40 +84,38 @@
 
     <!-- Подключение Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Подключение API Яндекс.Карт -->
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=ВАШ_API_КЛЮЧ&lang=ru_RU" type="text/javascript"></script>
-    <!-- Скрипт для работы с картой -->
+    <!-- JavaScript для загрузки списка бойцов -->
     <script>
-        // Инициализация карты
-        ymaps.ready(function () {
-            var map = new ymaps.Map('map', {
-                center: [51.7729, 55.0991], // Координаты Оренбургской области
-                zoom: 7, // Масштаб
-                controls: ['zoomControl'] // Элементы управления (например, зум)
-            });
+        // Пример данных о бойцах (можно заменить на запрос к серверу)
+        const soldiersData = [
+            { id: 1, name: "Иванов Иван Иванович", documents: ["document1.pdf", "document2.jpg"] },
+            { id: 2, name: "Петров Петр Петрович", documents: ["document3.pdf"] },
+            { id: 3, name: "Сидоров Сидор Сидорович", documents: [] }
+        ];
 
-            // Поиск места
-            document.getElementById('searchButton').addEventListener('click', function () {
-                var query = document.getElementById('searchInput').value;
-                if (query) {
-                    ymaps.geocode(query, {
-                        boundedBy: [[49, 50], [54, 60]], // Ограничение области поиска
-                        strictBounds: true
-                    }).then(function (res) {
-                        var firstGeoObject = res.geoObjects.get(0);
-                        if (firstGeoObject) {
-                            map.geoObjects.removeAll(); // Очистка предыдущих результатов
-                            map.geoObjects.add(firstGeoObject); // Добавление нового результата
-                            map.setBounds(firstGeoObject.properties.get('boundedBy')); // Центрирование карты
-                        } else {
-                            alert('Место не найдено.');
-                        }
-                    });
-                } else {
-                    alert('Введите запрос для поиска.');
-                }
+        // Функция для отображения списка бойцов
+        function renderSoldiersList() {
+            const soldiersListContainer = document.getElementById('soldiersList');
+            soldiersListContainer.innerHTML = ''; // Очищаем контейнер
+
+            soldiersData.forEach(soldier => {
+                const soldierCard = `
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">${soldier.name}</h5>
+                                <p class="card-text">Документы: ${soldier.documents.length > 0 ? soldier.documents.join(', ') : 'Нет документов'}</p>
+                                <a href="soldier-profile.html?id=${soldier.id}" class="btn btn-primary w-100">Перейти</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                soldiersListContainer.innerHTML += soldierCard;
             });
-        });
+        }
+
+        // Загрузка списка бойцов при загрузке страницы
+        document.addEventListener('DOMContentLoaded', renderSoldiersList);
     </script>
 </body>
 </html>
