@@ -4,22 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение собственного CSS -->
     <link rel="stylesheet" href="css/styles.css">
-    <script defer src="login.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Вход</h1>
+    <!-- Шапка -->
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">Книга Памяти Оренбургской области</h1>
+                <div class="auth-buttons">
+                    <a href="register.html" class="btn btn-success"><i class="bi bi-person-plus"></i> Регистрация</a>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Логин" required>
-            <input type="password" id="password" placeholder="Пароль" required>
-            <button type="submit">Войти</button>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Галерея</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="map.html">Карта</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Помощь</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="container py-5">
+        <h2 class="text-center mb-5">Вход</h2>
+
+        <!-- Форма входа для пользователей -->
+        <form class="w-50 mx-auto mb-5">
+            <h4 class="text-center mb-4">Вход для пользователей</h4>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Введите email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" placeholder="Введите пароль" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Войти</button>
         </form>
-        <p><a href="reset-password.html">Забыли пароль?</a></p>
-        <p>Нет аккаунта? <a href="register.html">Регистрация</a></p>
+
+        <!-- Вкладка для входа администратора -->
+        <div class="w-50 mx-auto text-center">
+            <p>Вы администратор? <a href="#" id="adminLoginLink">Войти как администратор</a></p>
+        </div>
+
+        <!-- Форма входа для администраторов (скрытая по умолчанию) -->
+        <form class="w-50 mx-auto d-none" id="adminLoginForm">
+            <h4 class="text-center mb-4">Вход для администраторов</h4>
+            <div class="mb-3">
+                <label for="adminEmail" class="form-label">Email администратора</label>
+                <input type="email" class="form-control" id="adminEmail" placeholder="Введите email администратора" required>
+            </div>
+            <div class="mb-3">
+                <label for="adminPassword" class="form-label">Пароль администратора</label>
+                <input type="password" class="form-control" id="adminPassword" placeholder="Введите пароль администратора" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Войти как администратор</button>
+        </form>
     </main>
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 Книга Памяти Оренбургской области. Все права защищены.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript для переключения форм -->
+    <script>
+        // Переключение между формами входа пользователя и администратора
+        document.getElementById('adminLoginLink').addEventListener('click', function (e) {
+            e.preventDefault(); // Предотвращаем переход по ссылке
+            const adminLoginForm = document.getElementById('adminLoginForm');
+            adminLoginForm.classList.toggle('d-none'); // Показываем/скрываем форму администратора
+        });
+    </script>
 </body>
 </html>
