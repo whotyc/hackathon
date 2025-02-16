@@ -4,24 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="register.js"></script>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение собственного CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Регистрация</h1>
+    <!-- Шапка -->
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">Книга Памяти Оренбургской области</h1>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-primary me-2"><i class="bi bi-box-arrow-in-right"></i> Вход</a>
+                    <a href="register.html" class="btn btn-success"><i class="bi bi-person-plus"></i> Регистрация</a>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <form id="registerForm">
-            <input type="text" id="fullname" placeholder="ФИО" required>
-            <input type="text" id="position" placeholder="Должность" required>
-            <input type="text" id="username" placeholder="Логин" required>
-            <input type="password" id="password" placeholder="Пароль" required>
-            <input type="password" id="confirmPassword" placeholder="Подтвердите пароль" required>
-            <button type="submit">Зарегистрироваться</button>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Галерея</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="map.html">Карта</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Помощь</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="container py-5">
+        <h2 class="text-center mb-5">Регистрация</h2>
+
+        <!-- Форма регистрации -->
+        <form class="w-75 mx-auto">
+            <h3>Информация о направляющем лице</h3>
+            <div class="mb-3">
+                <label for="localAuthority" class="form-label">Орган местного самоуправления/Орган военного управления</label>
+                <input type="text" class="form-control" id="localAuthority" placeholder="Введите название органа" required>
+            </div>
+            <div class="mb-3">
+                <label for="orgName" class="form-label">Название органа</label>
+                <input type="text" class="form-control" id="orgName" placeholder="Введите название органа" required>
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Фамилия</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Введите фамилию" required>
+            </div>
+            <div class="mb-3">
+                <label for="firstName" class="form-label">Имя</label>
+                <input type="text" class="form-control" id="firstName" placeholder="Введите имя" required>
+            </div>
+            <div class="mb-3">
+                <label for="middleName" class="form-label">Отчество</label>
+                <input type="text" class="form-control" id="middleName" placeholder="Введите отчество">
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Номер телефона</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Введите номер телефона" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Электронная почта</label>
+                <input type="email" class="form-control" id="email" placeholder="Введите email" required>
+            </div>
+
+            <h3>Сведения о жителе Оренбургской области</h3>
+            <div class="mb-3">
+                <label for="residentLastName" class="form-label">Фамилия</label>
+                <input type="text" class="form-control" id="residentLastName" placeholder="Введите фамилию" required>
+            </div>
+            <div class="mb-3">
+                <label for="residentFirstName" class="form-label">Имя</label>
+                <input type="text" class="form-control" id="residentFirstName" placeholder="Введите имя" required>
+            </div>
+            <div class="mb-3">
+                <label for="residentMiddleName" class="form-label">Отчество</label>
+                <input type="text" class="form-control" id="residentMiddleName" placeholder="Введите отчество">
+            </div>
+            <div class="mb-3">
+                <label for="birthDate" class="form-label">Дата рождения</label>
+                <input type="date" class="form-control" id="birthDate" required>
+            </div>
+            <div class="mb-3">
+                <label for="birthPlace" class="form-label">Место рождения</label>
+                <input type="text" class="form-control" id="birthPlace" placeholder="Введите место рождения" required>
+            </div>
+            <div class="mb-3">
+                <label for="militaryCommission" class="form-label">Наименование военного комиссариата</label>
+                <input type="text" class="form-control" id="militaryCommission" placeholder="Введите наименование военного комиссариата" required>
+            </div>
+            <div class="mb-3">
+                <label for="militaryRank" class="form-label">Воинское звание</label>
+                <input type="text" class="form-control" id="militaryRank" placeholder="Введите воинское звание">
+            </div>
+            <div class="mb-3">
+                <label for="conflictsInfo" class="form-label">Информация о вооруженных конфликтах</label>
+                <textarea class="form-control" id="conflictsInfo" rows="5" placeholder="Введите информацию о вооруженных конфликтах" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="awards" class="form-label">Награды</label>
+                <textarea class="form-control" id="awards" rows="5" placeholder="Введите информацию о наградах" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="deathDate" class="form-label">Дата гибели или смерти</label>
+                <input type="date" class="form-control" id="deathDate" required>
+            </div>
+            <div class="mb-3">
+                <label for="deathPlace" class="form-label">Место захоронения</label>
+                <input type="text" class="form-control" id="deathPlace" placeholder="Введите место захоронения" required>
+            </div>
+            <div class="mb-3">
+                <label for="biography" class="form-label">Иные факты биографии</label>
+                <textarea class="form-control" id="biography" rows="5" placeholder="Введите иные факты биографии" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="additionalDocuments" class="form-label">Дополнительные документы</label>
+                <textarea class="form-control" id="additionalDocuments" rows="5" placeholder="Введите информацию о дополнительных документах" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
         </form>
-        <p>Уже есть аккаунт? <a href="login.html">Войти</a></p>
     </main>
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 Книга Памяти Оренбургской области. Все права защищены.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
