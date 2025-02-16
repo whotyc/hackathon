@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Галерея</title>
+    <title>Карта</title>
     <!-- Подключение Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Подключение собственного CSS -->
@@ -35,10 +35,10 @@
                         <a class="nav-link" href="index.html">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="gallery.html">Галерея</a>
+                        <a class="nav-link" href="gallery.html">Галерея</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="map.html">Карта</a>
+                        <a class="nav-link active" href="map.html">Карта</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="help.html">Помощь</a>
@@ -50,46 +50,20 @@
 
     <!-- Основной контент -->
     <main class="container py-5">
-        <h2 class="text-center mb-5">Галерея фотографий</h2>
+        <h2 class="text-center mb-5">Интерактивная карта</h2>
 
         <!-- Форма поиска -->
         <div class="row justify-content-center mb-5">
             <div class="col-md-6">
-                <form class="mb-3">
-                    <label for="searchByName" class="form-label">Поиск по ФИО</label>
-                    <input type="text" class="form-control" id="searchByName" placeholder="Введите ФИО">
-                </form>
+                <input type="text" id="searchInput" class="form-control" placeholder="Введите место для поиска">
             </div>
-            <div class="col-md-6">
-                <form>
-                    <label for="searchByWar" class="form-label">Поиск по войнам</label>
-                    <select class="form-select" id="searchByWar">
-                        <option value="">Выберите войну</option>
-                        <option value="WWII">Великая Отечественная война</option>
-                        <option value="Afghanistan">Афганская война</option>
-                        <option value="Chechnya">Чеченская война</option>
-                        <option value="Other">Другие военные конфликты</option>
-                    </select>
-                </form>
+            <div class="col-md-2">
+                <button id="searchButton" class="btn btn-primary w-100">Найти</button>
             </div>
         </div>
 
-
-        <!-- Галерея изображений -->
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <img src="https://via.placeholder.com/400x300" alt="Фото 1" class="img-fluid rounded">
-                <p class="mt-2 text-center">Иванов И.И., Великая Отечественная война</p>
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="https://via.placeholder.com/400x300" alt="Фото 2" class="img-fluid rounded">
-                <p class="mt-2 text-center">Петров П.П., Афганская война</p>
-            </div>
-            <div class="col-md-4 mb-4">
-                <img src="https://via.placeholder.com/400x300" alt="Фото 3" class="img-fluid rounded">
-                <p class="mt-2 text-center">Сидоров С.С., Чеченская война</p>
-            </div>
-        </div>
+        <!-- Контейнер для карты -->
+        <div id="map" style="height: 500px; border: 1px solid #ccc;"></div>
     </main>
 
     <!-- Подвал -->
@@ -108,7 +82,43 @@
         </div>
     </footer>
 
+
     <!-- Подключение Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Подключение API Яндекс.Карт -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ВАШ_API_КЛЮЧ&lang=ru_RU" type="text/javascript"></script>
+    <!-- Скрипт для работы с картой -->
+    <script>
+        // Инициализация карты
+        ymaps.ready(function () {
+            var map = new ymaps.Map('map', {
+                center: [51.7729, 55.0991], // Координаты Оренбургской области
+                zoom: 7, // Масштаб
+                controls: ['zoomControl'] // Элементы управления (например, зум)
+            });
+
+            // Поиск места
+            document.getElementById('searchButton').addEventListener('click', function () {
+                var query = document.getElementById('searchInput').value;
+                if (query) {
+                    ymaps.geocode(query, {
+                        boundedBy: [[49, 50], [54, 60]], // Ограничение области поиска
+                        strictBounds: true
+                    }).then(function (res) {
+                        var firstGeoObject = res.geoObjects.get(0);
+                        if (firstGeoObject) {
+                            map.geoObjects.removeAll(); // Очистка предыдущих результатов
+                            map.geoObjects.add(firstGeoObject); // Добавление нового результата
+                            map.setBounds(firstGeoObject.properties.get('boundedBy')); // Центрирование карты
+                        } else {
+                            alert('Место не найдено.');
+                        }
+                    });
+                } else {
+                    alert('Введите запрос для поиска.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

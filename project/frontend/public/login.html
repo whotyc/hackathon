@@ -1,43 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Авторизация</title>
+    <title>Вход</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="http://127.0.0.1:5500/frontend/public/index.html">Главная</a></li>
-                <li><a href="http://127.0.0.1:5500/frontend/public/gallery.html">Галерея</a></li>
-                <li><a href="http://127.0.0.1:5500/frontend/public/help.html">Справка</a></li>
-                <li><a href="http://127.0.0.1:5500/frontend/public/register.html">Регистрация</a></li>
-                <li><a href="http://127.0.0.1:5500/frontend/public/login.html">Авторизация</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <div class="container">
-            <h2>Авторизация</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Пароль</label>
-                    <input type="password" id="password" name="password" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Войти</button>
-            </form>
-            <p>Забыли пароль? <a href="http://127.0.0.1:5500/frontend/public/reset-password.html">Восстановить</a></p>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Heroes Memorial. Все права защищены.</p>
-    </footer>
-    <script src="js/scripts.js"></script>
+    <h2>Авторизация</h2>
+    <form id="login-form">
+        <input type="text" id="login" placeholder="Логин" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
+    <p><a href="reset.html">Забыли пароль?</a></p>
+    <script src="../js/auth.js"></script>
 </body>
 </html>

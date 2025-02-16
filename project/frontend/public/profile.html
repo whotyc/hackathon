@@ -1,103 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/profile.js"></script>
 </head>
 <body>
     <header>
+        <h1>Личный кабинет</h1>
         <nav>
-            <ul>
-                <li><a href="http://127.0.0.1:5500/frontend/public/index.html">Главная</a></li>
-                <li><a href="http://127.0.0.1:5500/frontend/public/gallery.html">Галерея</a></li>
-                <li><a href="http://127.0.0.1:5500/frontend/public/help.html">Справка</a></li>
-                <li><a href="http://127.0.0.1:5500/frontend/public/register.html">Регистрация</a></li>
-                <li><a href="http://127.0.0.1:5500/frontend/public/login.html">Авторизация</a></li>
-                <li><a href="http://127.0.0.1:5500/frontend/public/profile.html">Личный кабинет</a></li>
-            </ul>
+            <a href="index.html">Главная</a>
+            <a href="gallery.html">Галерея</a>
+            <a href="#" id="logout">Выйти</a>
         </nav>
     </header>
-    <main>
-        <div class="container">
-            <h2>Личный кабинет</h2>
-            <form id="profileForm">
-                <div class="form-group">
-                    <label for="name">ФИО</label>
-                    <input type="text" id="name" name="name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="birthDate">Дата рождения</label>
-                    <input type="date" id="birthDate" name="birthDate" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="cityOfBirth">Город рождения</label>
-                    <input type="text" id="cityOfBirth" name="cityOfBirth" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Сохранить</button>
-            </form>
-            <h3>Добавить бойца</h3>
+    <div class="container">
+        <h2>Мои данные</h2>
+        <form id="profileForm">
+            <input type="text" id="name" placeholder="ФИО">
+            <input type="text" id="position" placeholder="Должность">
+            <input type="email" id="email" placeholder="Email">
+            <button type="submit">Сохранить</button>
+
             <form id="heroForm">
-                <div class="form-group">
-                    <label for="lastName">Фамилия</label>
-                    <input type="text" id="lastName" name="lastName" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="firstName">Имя</label>
-                    <input type="text" id="firstName" name="firstName" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="middleName">Отчество</label>
-                    <input type="text" id="middleName" name="middleName" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="birthDate">Дата рождения</label>
-                    <input type="date" id="birthDate" name="birthDate" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="placeOfBirth">Место рождения</label>
-                    <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="militaryCommissariat">Военный комиссариат</label>
-                    <input type="text" id="militaryCommissariat" name="militaryCommissariat" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="militaryRank">Военное звание</label>
-                    <input type="text" id="militaryRank" name="militaryRank" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="conflicts">Конфликты</label>
-                    <input type="text" id="conflicts" name="conflicts" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="awards">Награды</label>
-                    <input type="text" id="awards" name="awards" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="deathDate">Дата гибели</label>
-                    <input type="date" id="deathDate" name="deathDate" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="placeOfBurial">Место захоронения</label>
-                    <input type="text" id="placeOfBurial" name="placeOfBurial" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="biography">Биография</label>
-                    <textarea id="biography" name="biography" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="additionalDocuments">Дополнительные документы</label>
-                    <input type="file" id="additionalDocuments" name="additionalDocuments" class="form-control" multiple>
-                </div>
-                <button type="submit" class="btn btn-primary">Добавить бойца</button>
+                <input type="text" id="heroName" placeholder="ФИО">
+                <input type="text" id="birthplace" placeholder="Место рождения">
+                <button type="submit">Отправить</button>
             </form>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Heroes Memorial. Все права защищены.</p>
-    </footer>
-    <script src="js/scripts.js"></script>
+            
+            <script>
+            document.getElementById("heroForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                const data = { name: heroName.value, birthplace: birthplace.value };
+            
+                fetch("/heroes/add", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                }).then(res => res.json()).then(alert);
+            });
+            </script>
+            
+        </form>
+    </div>
 </body>
 </html>
