@@ -1,41 +1,35 @@
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const { User } = require('../models');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { User } = require("../models");
 
-exports.register = (req, res) => {
-  const { email, password, name } = req.body;
-  User.findOne({ where: { email } }).then(user => {
-    if (user) {
-      return res.status(400).json({ email: 'Email already exists' });
-    } else {
-      const newUser = User.build({ email, password, name });
+const login = async (req, res) => {
+    const { login, password } = req.body;
 
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser.save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
-        });
-      });
+    try {
+        const user = await User.findOne({ where: { login } });
+        if (!user) {
+            return res.status(404).json({ message: "Пользователь не найден" });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: "Неверный пароль" });
+        }
+
+        const token = jwt.sign(
+            { id: user.id, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: "24h" }
+        );
+
+        res.json({ token, role: user.role });
+    } catch (error) {
+        res.status(500).json({ message: "Ошибка сервера" });
     }
-  });
 };
 
-exports.login = (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) return next(err);
-    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
-
-    req.logIn(user, (err) => {
-      if (err) return next(err);
-      return res.json(user);
-    });
-  })(req, res, next);
+const logout = (req, res) => {
+    res.json({ message: "Выход выполнен" });
 };
 
-exports.logout = (req, res) => {
-  req.logout();
-  res.json({ message: 'Successfully logged out' });
-};
+module.exports = { login, logout };

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявки о бойцах</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="admin-heroes.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Заявки о бойцах</h1>
+        <nav>
+            <a href="admin-panel.html">Главная</a>
+            <a href="admin-users.html">Пользователи</a>
+            <a href="admin-heroes.html">Заявки о бойцах</a>
+            <a href="admin-map.html">Редактирование карты</a>
+            <a href="index.html">Выход</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Список заявок</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ФИО</th>
+                    <th>Описание</th>
+                    <th>Статус</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody id="heroesTable">
+                <!-- Данные загружаются из JS -->
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

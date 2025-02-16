@@ -1,44 +1,33 @@
-project/
-├── backend/
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── heroController.js
-│   │   ├── userController.js
-│   ├── models/
-│   │   ├── index.js
-│   │   ├── User.js
-│   │   ├── Hero.js
-│   ├── routes/
-│   │   ├── auth.js
-│   │   ├── heroes.js
-│   │   ├── users.js
-│   ├── utils/
-│   │   ├── auth.js
-│   ├── config/
-│   │   ├── passport.js
-│   ├── .env
-│   ├── app.js
-│   ├── server.js
-├── frontend/
-│   ├── public/
-│   │   ├── index.html
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Navbar.js
-│   │   │   ├── Home.js
-│   │   │   ├── Register.js
-│   │   │   ├── Login.js
-│   │   │   ├── Profile.js
-│   │   │   ├── Gallery.js
-│   │   │   ├── Hero.js
-│   │   ├── css/
-│   │   │   ├── styles.css
-│   │   ├── js/
-│   │   │   ├── scripts.js
-│   │   ├── App.js
-│   │   ├── index.js
-│   ├── .env
-│   ├── package.json
-│   ├── README.md
-├── docker-compose.yml
-└── README.md
+/project
+│── /backend
+│   │── server.js 
+│   │── database.js 
+│   │── models.js 
+│   │── routes
+│   │   │── authRoutes.js 
+│   │   │── userRoutes.js 
+│   │   │── adminRoutes.js 
+│   │   │── fighterRoutes.js 
+│   │── middleware
+│   │   │── authMiddleware.js 
+│── /frontend
+│   │── index.html 
+│   │── auth.html 
+│   │── register.html 
+│   │── cabinet.html 
+│   │── admin.html 
+│   │── gallery.html 
+│   │── fighter.html 
+│   │── map.html 
+│   │── help.html
+│   │── assets/
+│   │   │── style.css
+│   │── scripts/
+│   │   │── auth.js
+│   │   │── register.js
+│   │   │── cabinet.js
+│   │   │── admin.js 
+│   │   │── gallery.js 
+│   │   │── fighter.js 
+│   │   │── map.js 
+│   │   │── help.js 

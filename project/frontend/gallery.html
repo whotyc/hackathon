@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Галерея</h1>
+    </header>
+
+    <main>
+        <input type="text" id="search" placeholder="Поиск по фамилии или конфликту">
+        <select id="conflictFilter">
+            <option value="">Выберите конфликт</option>
+            <option value="ВОВ">Великая Отечественная Война</option>
+            <option value="Афганистан">Боевые действия в Афганистане</option>
+            <option value="Чечня">Вооруженный конфликт в Чеченской Республике и на прилегающих к ней территориях Российской Федерации</option>
+            <option value="Сирия">Выполнение специальных задач на территории Сирийской Арабской Республики</option>
+            <option value="Абхазия">Выполнение специальных задач на территории Таджикистана, Ингушетии, в Грузино-Абхазских событиях</option>
+            <option value="СВО">Специальная военная операция на Украине</option>
+        </select>
+        <button>Поиск</button>
+
+        <div id="gallery"></div>
+    </main>
+</body>
+</html>

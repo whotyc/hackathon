@@ -1,0 +1,49 @@
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role");
+    
+        if (!token || role !== "admin") {
+            alert("Доступ запрещен!");
+            window.location.href = "index.html";
+        }
+    });
+    </script>
+<button onclick="banUser(userId)">Заблокировать</button>
+<script>
+function banUser(userId) {
+    fetch(`/users/ban/${userId}`, { method: "PUT" })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error(error));
+}
+</script>
+<div id="pendingHeroes"></div>
+
+<script>
+fetch("/heroes/pending")
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(hero => {
+            const div = document.createElement("div");
+            div.innerHTML = `
+                <p>${hero.name} - ${hero.status}</p>
+                <button onclick="approveHero(${hero.id})">Одобрить</button>
+                <button onclick="rejectHero(${hero.id})">Отклонить</button>
+            `;
+            document.getElementById("pendingHeroes").appendChild(div);
+        });
+    });
+
+function approveHero(id) {
+    fetch(`/heroes/approve/${id}`, { method: "PUT" })
+        .then(res => res.json())
+        .then(() => location.reload());
+}
+
+function rejectHero(id) {
+    fetch(`/heroes/reject/${id}`, { method: "PUT" })
+        .then(res => res.json())
+        .then(() => location.reload());
+}
+</script>

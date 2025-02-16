@@ -1,38 +1,32 @@
-const { Hero } = require('../models');
-
-exports.getAllHeroes = (req, res) => {
-  Hero.findAll().then(heroes => res.json(heroes));
+const getPendingHeroes = async (req, res) => {
+  const heroes = await Hero.findAll({ where: { status: "pending" } });
+  res.json(heroes);
 };
 
-exports.getHeroById = (req, res) => {
-  Hero.findByPk(req.params.id).then(hero => res.json(hero));
+const approveHero = async (req, res) => {
+  const { id } = req.params;
+  const hero = await Hero.findByPk(id);
+  if (!hero) return res.status(404).json({ message: "Боец не найден" });
+
+  hero.status = "approved";
+  await hero.save();
+  res.json({ message: "Форма одобрена" });
 };
 
-exports.addHero = (req, res) => {
-  Hero.create(req.body).then(hero => res.json(hero));
-};
+const rejectHero = async (req, res) => {
+  const { id } = req.params;
+  const hero = await Hero.findByPk(id);
+  if (!hero) return res.status(404).json({ message: "Боец не найден" });
 
-exports.updateHero = (req, res) => {
-  Hero.update(req.body, { where: { id: req.params.id } }).then(hero => res.json(hero));
+  hero.status = "rejected";
+  await hero.save();
+  res.json({ message: "Форма отклонена" });
 };
+const updateHero = async (req, res) => {
+  const { id } = req.params;
+  const hero = await Hero.findByPk(id);
+  if (!hero) return res.status(404).json({ message: "Боец не найден" });
 
-exports.deleteHero = (req, res) => {
-  Hero.destroy({ where: { id: req.params.id } }).then(() => res.json({ success: true }));
-};
-
-exports.searchHeroes = (req, res) => {
-  const { query } = req.query;
-  Hero.findAll({
-    where: {
-      [Op.or]: [
-        { name: { [Op.iLike]: `%${query}%` } },
-        { conflicts: { [Op.iLike]: `%${query}%` } }
-      ]
-    }
-  }).then(heroes => res.json(heroes));
-};
-
-exports.getHeroesByMunicipality = (req, res) => {
-  const { municipality } = req.params;
-  Hero.findAll({ where: { burialPlace: municipality } }).then(heroes => res.json(heroes));
+  await hero.update(req.body);
+  res.json({ message: "Данные обновлены" });
 };

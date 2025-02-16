@@ -1,9 +1,15 @@
-const { User } = require('../models');
+const banUser = async (req, res) => {
+  try {
+      const { id } = req.params;
+      const user = await User.findByPk(id);
 
-exports.updateUser = (req, res) => {
-  User.update(req.body, { where: { id: req.user.id } }).then(user => res.json(user));
-};
+      if (!user) return res.status(404).json({ message: "Пользователь не найден" });
 
-exports.getUser = (req, res) => {
-  User.findByPk(req.user.id).then(user => res.json(user));
+      user.isBanned = true;
+      await user.save();
+
+      res.json({ message: "Пользователь заблокирован" });
+  } catch (error) {
+      res.status(500).json({ message: "Ошибка сервера" });
+  }
 };
