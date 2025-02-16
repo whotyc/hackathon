@@ -1,49 +1,45 @@
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const token = localStorage.getItem("token");
-        const role = localStorage.getItem("role");
-    
-        if (!token || role !== "admin") {
-            alert("Доступ запрещен!");
-            window.location.href = "index.html";
-        }
-    });
-    </script>
-<button onclick="banUser(userId)">Заблокировать</button>
-<script>
-function banUser(userId) {
-    fetch(`/users/ban/${userId}`, { method: "PUT" })
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error(error));
-}
-</script>
-<div id="pendingHeroes"></div>
+<h2>Список пользователей</h2>
+<table id="users">
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Полное имя</th>
+        <th>Действие</th>
+    </tr>
+</table>
 
 <script>
-fetch("/heroes/pending")
-    .then(res => res.json())
-    .then(data => {
-        data.forEach(hero => {
-            const div = document.createElement("div");
-            div.innerHTML = `
-                <p>${hero.name} - ${hero.status}</p>
-                <button onclick="approveHero(${hero.id})">Одобрить</button>
-                <button onclick="rejectHero(${hero.id})">Отклонить</button>
+    // Примерный массив пользователей
+    let users = [
+        { id: 1, email: "user1@example.com", phone: "+79991234567", full_name: "Иван Иванов" },
+        { id: 2, email: "user2@example.com", phone: "+79997654321", full_name: "Петр Петров" },
+        { id: 3, email: "user3@example.com", phone: "+79993456789", full_name: "Сидор Сидоров" }
+    ];
+
+    // Функция загрузки пользователей в таблицу
+    function loadUsers() {
+        let table = document.getElementById("users");
+        users.forEach(user => {
+            let row = table.insertRow();
+            row.setAttribute("data-id", user.id);
+            row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.email}</td>
+                <td>${user.phone}</td>
+                <td>${user.full_name}</td>
+                <td><button onclick="blockUser(${user.id})">Заблокировать</button></td>
             `;
-            document.getElementById("pendingHeroes").appendChild(div);
         });
-    });
+    }
 
-function approveHero(id) {
-    fetch(`/heroes/approve/${id}`, { method: "PUT" })
-        .then(res => res.json())
-        .then(() => location.reload());
-}
+    // Функция блокировки (удаления) пользователя
+    function blockUser(id) {
+        users = users.filter(user => user.id !== id);  // Удаляем из массива
+        let row = document.querySelector(`tr[data-id="${id}"]`);
+        if (row) row.remove();  // Удаляем из таблицы
+        alert(`Пользователь с ID ${id} заблокирован`);
+    }
 
-function rejectHero(id) {
-    fetch(`/heroes/reject/${id}`, { method: "PUT" })
-        .then(res => res.json())
-        .then(() => location.reload());
-}
+    loadUsers();
 </script>
