@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книга Памяти Оренбургской области</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Подключение собственного CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">Книга Памяти</h1>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-primary me-2"><i class="bi bi-box-arrow-in-right"></i> Вход</a>
+                    <a href="register.html" class="btn btn-success"><i class="bi bi-person-plus"></i> Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Галерея</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="map.html">Карта</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Помощь</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главный баннер -->
+    <section class="hero-section bg-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Soviet_soldiers_in_WWII.jpg/1280px-Soviet_soldiers_in_WWII.jpg'); background-size: cover; background-position: center;">
+        <div class="overlay"></div>
+        <div class="container text-center text-white py-5">
+            <h2 class="display-4 fw-bold">Увековечим память героев</h2>
+            <p class="lead">Проект "Книга Памяти" посвящен тем, кто отдал свои жизни за свободу и независимость нашей Родины.</p>
+            <a href="#about" class="btn btn-outline-light btn-lg">Узнать больше</a>
+        </div>
+    </section>
+
+
+    <!-- О проекте -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Georgievskaya_ribbon.svg/1200px-Georgievskaya_ribbon.svg.png" alt="Георгиевская лента" class="img-fluid rounded">
+                </div>
+                <div class="col-md-6">
+                    <h2>О проекте</h2>
+                    <p>
+                        Информационная система "Книга Памяти" представляет собой систематизированный свод документированных сведений в электронной форме о лицах, проживавших на территории Оренбургской области, погибших при защите Отечества с начала Великой Отечественной войны.
+                        Цель проекта – увековечение памяти и формирование глубокого уважения к памяти лиц, проживавших на территории Оренбургской области, погибших при защите Отечества.
+                    </p>
+                    <a href="about.html" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Карточки с разделами -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Разделы проекта</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-people-fill display-4 text-primary"></i>
+                            <h5 class="card-title mt-3">Люди и документы</h5>
+                            <p class="card-text">Свод документированных сведений о героях, погибших при защите Отечества.</p>
+                            <a href="people.html" class="btn btn-outline-primary">Перейти</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-file-earmark-text-fill display-4 text-success"></i>
+                            <h5 class="card-title mt-3">Правовая информация</h5>
+                            <p class="card-text">Законы и нормативные акты, регулирующие деятельность проекта.</p>
+                            <a href="legal.html" class="btn btn-outline-success">Перейти</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-question-circle-fill display-4 text-warning"></i>
+                            <h5 class="card-title mt-3">Помощь</h5>
+                            <p class="card-text">Ответы на часто задаваемые вопросы и контактная информация.</p>
+                            <a href="help.html" class="btn btn-outline-warning">Перейти</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 Книга Памяти Оренбургской области. Все права защищены.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+</html><link rel="stylesheet" href="styles.css">

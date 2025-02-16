@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование карты</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="admin-map.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Редактирование карты</h1>
+        <nav>
+            <a href="admin-panel.html">Главная</a>
+            <a href="admin-users.html">Пользователи</a>
+            <a href="admin-heroes.html">Заявки о бойцах</a>
+            <a href="admin-map.html">Редактирование карты</a>
+            <a href="index.html">Выход</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Интерактивная карта</h2>
+        <iframe src="https://geois2.orb.ru/resource/8890/display/tiny?base=basemap_0&lon=57.6854&lat=51.8106&angle=0&zoom=7&styles=8785%2C7986%2C7975%2C2092%2C8785&linkMainMap=true&events=false&panel=none&controls=&panels=" 
+                style="width: 100%; height: 600px; border: none;"></iframe>
+        
+        <h3>Добавить точку</h3>
+        <form id="mapForm">
+            <input type="text" id="pointName" placeholder="Название точки" required>
+            <input type="text" id="latitude" placeholder="Широта" required>
+            <input type="text" id="longitude" placeholder="Долгота" required>
+            <button type="submit">Добавить</button>
+        </form>
+    </main>
+</body>
+</html>

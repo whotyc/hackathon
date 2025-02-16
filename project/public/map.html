@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение собственного CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">Книга Памяти</h1>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-primary me-2"><i class="bi bi-box-arrow-in-right"></i> Вход</a>
+                    <a href="register.html" class="btn btn-success"><i class="bi bi-person-plus"></i> Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Галерея</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="map.html">Карта</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Помощь</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="container py-5">
+        <h2 class="text-center mb-5">Интерактивная карта</h2>
+
+        <!-- Форма поиска -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6">
+                <input type="text" id="searchInput" class="form-control" placeholder="Введите место для поиска">
+            </div>
+            <div class="col-md-2">
+                <button id="searchButton" class="btn btn-primary w-100">Найти</button>
+            </div>
+        </div>
+
+        <!-- Контейнер для карты -->
+        <div id="map" style="height: 500px; border: 1px solid #ccc;"></div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 Книга Памяти Оренбургской области. Все права защищены.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Подключение API Яндекс.Карт -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ВАШ_API_КЛЮЧ&lang=ru_RU" type="text/javascript"></script>
+    <!-- Скрипт для работы с картой -->
+    <script>
+        // Инициализация карты
+        ymaps.ready(function () {
+            var map = new ymaps.Map('map', {
+                center: [51.7729, 55.0991], // Координаты Оренбургской области
+                zoom: 7, // Масштаб
+                controls: ['zoomControl'] // Элементы управления (например, зум)
+            });
+
+            // Поиск места
+            document.getElementById('searchButton').addEventListener('click', function () {
+                var query = document.getElementById('searchInput').value;
+                if (query) {
+                    ymaps.geocode(query, {
+                        boundedBy: [[49, 50], [54, 60]], // Ограничение области поиска
+                        strictBounds: true
+                    }).then(function (res) {
+                        var firstGeoObject = res.geoObjects.get(0);
+                        if (firstGeoObject) {
+                            map.geoObjects.removeAll(); // Очистка предыдущих результатов
+                            map.geoObjects.add(firstGeoObject); // Добавление нового результата
+                            map.setBounds(firstGeoObject.properties.get('boundedBy')); // Центрирование карты
+                        } else {
+                            alert('Место не найдено.');
+                        }
+                    });
+                } else {
+                    alert('Введите запрос для поиска.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
