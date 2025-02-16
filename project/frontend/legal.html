@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правовая информация</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение собственного CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">Книга Памяти Оренбургской области</h1>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-primary me-2"><i class="bi bi-box-arrow-in-right"></i> Вход</a>
+                    <a href="register.html" class="btn btn-success"><i class="bi bi-person-plus"></i> Регистрация</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Галерея</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="legal.html">Правовая информация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="map.html">Карта</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Помощь</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="container py-5">
+        <h2 class="text-center mb-5">Правовая информация</h2>
+
+        <!-- Перечень документов -->
+        <section class="mb-5">
+            <h3>Перечень документов</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="documents/privacy_policy.pdf" target="_blank">Политика конфиденциальности</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="documents/terms_of_use.pdf" target="_blank">Условия использования</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="documents/data_protection_agreement.pdf" target="_blank">Соглашение об обработке персональных данных</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="documents/project_regulations.pdf" target="_blank">Правила проекта</a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Правила пользования -->
+        <section class="mb-5">
+            <h3>Правила пользования</h3>
+            <p>
+                1. Использование материалов сайта разрешено только в некоммерческих целях.<br>
+                2. Запрещается копирование, распространение или модификация контента без разрешения администрации.<br>
+                3. Все пользователи обязаны соблюдать законодательство РФ.<br>
+                4. Администрация оставляет за собой право вносить изменения в правила пользования.
+            </p>
+        </section>
+
+        <!-- Соглашение об обработке персональных данных -->
+        <section>
+            <h3>Соглашение об обработке персональных данных</h3>
+            <p>
+                1. Пользователь дает согласие на обработку своих персональных данных для целей участия в проекте.<br>
+                2. Персональные данные обрабатываются в соответствии с Федеральным законом №152-ФЗ "О персональных данных".<br>
+                3. Пользователь может отозвать свое согласие на обработку данных, направив запрос на электронную почту support@memorybook.ru.<br>
+                4. Администрация обязуется обеспечивать защиту персональных данных пользователей.
+            </p>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 Книга Памяти Оренбургской области. Все права защищены.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
